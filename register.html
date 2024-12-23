@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register - Rudra Gaming Cafe</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      margin: 0;
+      padding: 0;
+      //background-color: #f4f4f4; /* Light gray background color */
+      background-image: url('https://thesmartlocal.com/wp-content/uploads/2020/12/lan-shops-3-1.jpg');
+    }
+
+    .container {
+        width: 80%;
+      max-width: 400px;
+      margin: 100px auto;
+      padding: 20px;
+      background-color: #ccc; /* White background color */
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Box shadow for container */
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+
+    input[type="submit"] {
+      width: 100%;
+      padding: 10px;
+      background-color: #000; 
+      color: #ff9933;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #f7740c;
+        color:#000;
+    }
+
+    .bottom-text {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .bottom-text a {
+      color: #007bff; /* Blue link color */
+      text-decoration: none;
+    }
+
+    .bottom-text a:hover {
+      text-decoration: underline;
+    }
+  </style>
+
+<script>
+    function validateForm() {
+      var fullname = document.getElementById('fullname').value.trim();
+      var username = document.getElementById('username').value.trim();
+      var email = document.getElementById('email').value.trim();
+      var phone = document.getElementById('phone').value.trim();
+      var password = document.getElementById('password').value.trim();
+      var confirm_password = document.getElementById('confirm_password').value.trim();
+      var errorMessages = "";
+
+      // Full Name validation
+      if (fullname === "") {
+    errorMessages += "Fullname is required.<br>";
+  } else if (!/^[a-zA-Z\s]*$/.test(fullname)) {
+    errorMessages += "Full Name should not contain digits.<br>";
+  }
+      
+
+      // Username validation
+      if (username === "") {
+        errorMessages += "Username is required.<br>";
+      }
+
+      // Email validation
+      if (email === "") {
+        errorMessages += "Email Address is required.<br>";
+      } else if (!validateEmail(email)) {
+        errorMessages += "Invalid Email Address.<br>";
+      }
+
+      // Phone Number validation
+      if (phone === "") {
+        errorMessages += "Phone Number is required.<br>";
+      } else if (!validatePhone(phone)) {
+        errorMessages += "Invalid Phone Number.<br>";
+      }
+
+      // Password validation
+      if (password === "") {
+        errorMessages += "Password is required.<br>";
+      }
+
+      // Confirm Password validation
+      if (confirm_password === "") {
+        errorMessages += "Confirm Password is required.<br>";
+      } else if (password !== confirm_password) {
+        errorMessages += "Passwords do not match.<br>";
+      }
+
+      // Display error messages
+      if (errorMessages !== "") {
+        document.getElementById('errorMessages').innerHTML = errorMessages;
+        return false; // Prevent form submission
+      }
+
+      return true; // Allow form submission
+    }
+
+    // Email validation function
+    function validateEmail(email) {
+      var re = /\S+@\S+\.\S+/;
+      return re.test(email);
+    }
+
+    // Phone number validation function
+    function validatePhone(phone) {
+      var re = /^[0-9]{10}$/;
+      return re.test(phone);
+    }
+  </script>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Register for Rudra Gaming Cafe</h2>
+        <form id="registrationForm" action="register.php" method="post" onsubmit="return validateForm()">
+          <label for="fullname">Full Name:</label>
+          <input type="text" id="fullname" name="fullname" required>
+          <label for="username">Username:</label>
+          <input type="text" id="username" name="username" required>
+          <label for="email">Email Address:</label>
+          <input type="email" id="email" name="email" required>
+          <label for="phone">Phone Number:</label>
+          <input type="tel" id="phone" name="phone" required>
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password" required>
+          <label for="confirm_password">Confirm Password:</label>
+          <input type="password" id="confirm_password" name="confirm_password" required>
+          <input type="submit" value="Register">
+        </form>
+        <div id="errorMessages" style="color: red; margin-top: 10px;"></div>
+        <p class="bottom-text">Already have an account? <a href="login.html">Login here</a></p>
+      </div>
+
+</body>
+</html>
